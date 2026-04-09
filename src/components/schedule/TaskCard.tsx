@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Pin, Check, BookOpen, RefreshCw } from 'lucide-react'
 import { Task } from '@/types'
 import { useStore } from '@/store'
-import { getColorById, PCCS_COLORS } from '@/lib/utils'
+import { getColorById } from '@/lib/utils'
 import { PCCS_COLORS as COLORS } from '@/types'
 import CompleteTaskModal from './CompleteTaskModal'
 
