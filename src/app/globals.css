@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --schedule-hour-height: 72px;
+  --timeline-left: 56px;
+  --accent: #6366f1;
+  --accent-soft: #818cf8;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  border-radius: 999px;
+}
+
+/* ===== Schedule Grid ===== */
+.schedule-hour-row {
+  height: var(--schedule-hour-height);
+  min-height: var(--schedule-hour-height);
+}
+
+/* ===== Current time indicator ===== */
+.time-indicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  pointer-events: none;
+}
+.time-indicator::before {
+  content: '';
+  position: absolute;
+  left: var(--timeline-left);
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #f43f5e, #fb923c);
+  box-shadow: 0 0 8px rgba(244, 63, 94, 0.6);
+}
+.time-indicator::after {
+  content: '';
+  position: absolute;
+  left: calc(var(--timeline-left) - 4px);
+  top: -4px;
+  width: 8px;
+  height: 8px;
+  background: #f43f5e;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(244, 63, 94, 0.8);
+}
+
+/* ===== Task card ===== */
+.task-card {
+  @apply rounded-lg px-2.5 py-1.5 text-xs font-medium transition-all duration-200;
+  border-left: 3px solid rgba(255,255,255,0.3);
+}
+.task-card.completed {
+  @apply opacity-40;
+  text-decoration: line-through;
+}
+
+/* ===== Glass morphism ===== */
+.glass {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.glass-light {
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ===== Nav tab ===== */
+.nav-tab {
+  @apply flex flex-col items-center gap-0.5 px-4 py-2 text-xs font-medium transition-colors duration-200;
+}
+.nav-tab.active {
+  @apply text-indigo-400;
+}
+.nav-tab:not(.active) {
+  @apply text-slate-500;
+}
+
+/* ===== Emoji rating buttons ===== */
+.emoji-btn {
+  @apply text-2xl p-2 rounded-xl transition-all duration-200 select-none;
+}
+.emoji-btn.selected {
+  @apply scale-125 bg-slate-700/60;
+}
+.emoji-btn:not(.selected) {
+  @apply opacity-50 hover:opacity-80;
+}
+
+/* ===== PCCS color picker ===== */
+.pccs-swatch {
+  @apply w-8 h-8 rounded-lg cursor-pointer transition-all duration-150 border-2;
+}
+.pccs-swatch.selected {
+  @apply border-white scale-110 shadow-lg;
+}
+.pccs-swatch:not(.selected) {
+  @apply border-transparent hover:scale-105;
+}
+
+/* ===== Modal backdrop ===== */
+.modal-backdrop {
+  @apply fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-4;
+  animation: fadeIn 0.15s ease-out;
+}
+.modal-content {
+  @apply w-full max-w-lg rounded-2xl overflow-hidden;
+  background: #1e293b;
+  border: 1px solid rgba(255,255,255,0.08);
+  animation: slideUp 0.25s ease-out;
+}
+
+/* ===== Input ===== */
+.input-base {
+  @apply w-full bg-slate-800/60 border border-slate-700/50 rounded-xl px-3 py-2.5 text-sm text-slate-100 placeholder-slate-500 outline-none transition-colors duration-150;
+}
+.input-base:focus {
+  @apply border-indigo-500/60 ring-1 ring-indigo-500/30;
+}
+
+/* ===== Button variants ===== */
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-xl px-4 py-2.5 text-sm transition-all duration-150 active:scale-95;
+}
+.btn-secondary {
+  @apply bg-slate-700/60 hover:bg-slate-600/60 text-slate-200 font-medium rounded-xl px-4 py-2.5 text-sm transition-all duration-150 active:scale-95;
+}
+.btn-danger {
+  @apply bg-rose-600/20 hover:bg-rose-600/30 text-rose-400 font-medium rounded-xl px-4 py-2.5 text-sm transition-all duration-150 active:scale-95;
+}
+.btn-ghost {
+  @apply text-slate-400 hover:text-slate-200 hover:bg-slate-700/40 rounded-xl px-3 py-2 text-sm transition-all duration-150;
+}
+
+/* ===== Section header ===== */
+.section-label {
+  @apply text-xs font-semibold text-slate-500 uppercase tracking-widest;
+}
+
+/* ===== Gradient text ===== */
+.gradient-text {
+  background: linear-gradient(135deg, #818cf8, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Review badge ===== */
+.review-badge {
+  @apply text-xs px-1.5 py-0.5 rounded-md font-mono font-medium;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { transform: translateY(16px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
